@@ -27,15 +27,35 @@ module.exports = {
         },
     },
 
-    // gasReporter: {
-    //     enabled: REPORT_GAS,
-    //     currency: "USD",
-    //     outputFile: "gas-report.txt",
-    //     noColors: true,
-    //     // coinmarketcap: process.env.COINMARKETKEY_API_KEY,
-    // },
+    etherscan: {
+        // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
+        apiKey: {
+            rinkeby: ETHERSCAN_API_KEY,
+            kovan: ETHERSCAN_API_KEY,
+            goerli: ETHERSCAN_API_KEY,
+            // polygon: POLYGONSCAN_API_KEY,
+        },
+    },
 
-    solidity: "0.8.7",
+    solidity: {
+        compilers: [
+            {
+                version: "0.8.7",
+            },
+            {
+                version: "0.4.24",
+            },
+        ],
+    },
+
+    gasReporter: {
+        enabled: false,
+        currency: "USD",
+        outputFile: "gas-report.txt",
+        noColors: true,
+        // coinmarketcap: process.env.COINMARKETKEY_API_KEY,
+    },
+
     namedAccounts: {
         deployer: {
             default: 0,
@@ -43,5 +63,9 @@ module.exports = {
         player: {
             default: 1,
         },
+    },
+
+    mocha: {
+        timeout: 500000, // 200 max seconds
     },
 }
